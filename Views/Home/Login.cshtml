@@ -1,0 +1,166 @@
+﻿@{
+    Layout = "_Layout1";
+
+}
+
+@section Css {
+
+
+
+}
+
+<div class="row no-gutter">
+    <!-- The image half -->
+    <div class="col-md-6 col-lg-6 col-xl-7 d-none d-md-flex">
+        <div class="row wd-100p mx-auto text-center">
+            <div class="col-md-12 col-lg-12 col-xl-12 my-auto mx-auto wd-100p">
+                <img src="~/assets/img/pngs/8.png"
+                     class="my-auto ht-xl-80p wd-md-100p wd-xl-80p mx-auto" alt="logo">
+            </div>
+        </div>
+    </div>
+    <!-- The content half -->
+    <div class="col-md-6 col-lg-6 col-xl-5 bg-white py-4">
+        <div class="login d-flex align-items-center py-2">
+            <!-- Demo content-->
+            <div class="container p-0">
+                <div class="row">
+                    <div class="col-md-10 col-lg-10 col-xl-9 mx-auto">
+                        <div class="card-sigin">
+                            @* 										<div class="mb-5 d-flex">
+                            <a asp-area="" asp-page="/Index"><img src="~/assets/img/brand/favicon.png"
+                            class="sign-favicon-a ht-40" alt="logo">
+                            <img src="~/assets/img/brand/favicon-white.png"
+                            class="sign-favicon-b ht-40" alt="logo">
+                            </a>
+                            <h1 class="main-logo1 ms-1 me-0 my-auto tx-28">Va<span>le</span>x</h1>
+                            </div> *@
+                            <div class="main-signup-header row">
+                                <h3 style="    font-weight: 500;color: chocolate;letter-spacing: -1px;">
+                                    Welcome back!
+                                </h3>
+                                <h6 class="fw-medium mb-4 fs-17">Please sign in to continue.</h6>
+                                <div class="col-md-12">
+                                    <label>Member ID</label>
+                                    <form>
+                                        <input class="form-control" id="txt_MemberId" placeholder="Enter your Member ID" autocomplete="off" type="text">
+                                    </form>
+                                </div>
+                                <div class="col-md-6 mt-5">
+                                    <button class="btn btn-primary" style="float:right;" type="button" onclick="SignIN()">Sign In</button>
+                                </div>
+                                <div class="col-md-6 mt-5">
+                                    <button class="btn btn-secondary" style="float:left;" type="button" onclick="SignOut()">Sign Out</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div><!-- End -->
+        </div>
+    </div><!-- End -->
+
+    <partial name="~/Views/Shared/layouts/_footer.cshtml" />
+</div>
+
+@section scripts {
+
+    <script>
+        function SignIN() {
+            var Member_Id = $("#txt_MemberId").val();
+            if (Member_Id == "") {
+                swal('', 'Please enter Member ID', 'info');
+                return false;
+            }
+            var ReqData = {
+                ID: Member_Id,
+                FLAG : "SI"
+            };
+            var Param = JSON.stringify(ReqData);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Verify_Login", "HOME")',
+                contentType: "application/json; charset=utf-8",
+                data: Param,
+                dataType: "json",
+                beforeSend: function () { $("#global-loader").show(); }, 
+                complete: function () { $("#global-loader").hide(); },
+                success: function (data) {
+                    console.log(data.error);
+                    if (data.status == "01") {
+                        var Result = data.result;
+                        Result = JSON.parse(Result);
+                        Result = Result.P_FETCH_LOGIN_DETAILS;
+                        if (Result[0]["MEM_LOGIN_TYPE"] == "A") {
+                            window.location.href = '/Admin/AdminPage';
+                            return false;
+                        }
+                        if (Result[0]["STATUS_CODE"] == '1') {
+                            swal('', Result[0]["MESSAGE"], 'success');
+                            return false;
+                        }
+                        else{
+                            swal('', Result[0]["MESSAGE"], 'info');
+                            return false;
+                        }  
+                    }
+
+                    else {
+                        swal('', 'Sign-In failed.Please contact support team.', 'error');
+                        console.log(data.error);
+                        return false;
+                    }
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                    swal('', 'Sign-In failed.Please contact support team.', 'error');
+                    console.log(errorMessage);
+                    return false;
+                }
+            });
+
+
+        }
+
+        function SignOut() {
+            var Member_Id = $("#txt_MemberId").val();
+            if (Member_Id == "") {
+                swal('', 'Please enter Member ID', 'info');
+                return false;
+            }
+            var ReqData = {
+                ID: Member_Id,
+                FLAG : "SO"
+            };
+            var Param = JSON.stringify(ReqData);
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("Sign_Out_Login", "HOME")',
+                contentType: "application/json; charset=utf-8",
+                data: Param,
+                dataType: "json",
+                beforeSend: function () { $("#global-loader").show(); },
+                complete: function () { $("#global-loader").hide(); },
+                success: function (data) {
+                    console.log(data.error);
+                    if (data.status == "01") {
+                        swal('', 'Sign-out successfully.', 'success');
+                        return false;
+                    } else {
+                        swal('', 'Sign-out failed.Please contact support team.', 'error');
+                        return false;
+                    }
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                    swal('', 'Sign-out failed.Please contact support team.', 'error');
+                    console.log(errorMessage);
+                    return false;
+                }
+            });
+
+
+        }
+    </script>
+    <script src="~/assets/plugins/sweet-alert/sweetalert.min.js"></script>
+}
+

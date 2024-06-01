@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+		<meta charset="UTF-8">
+		<meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- Title -->
+		<title>Flexfit Shape Your Future</title>
+
+		<!--- Favicon -->
+		<link rel="icon" href="~/assets/img/brand/favicon.png" type="image/x-icon">
+
+		<!--- Icons css -->
+		<link href="~/assets/css/icons.css" rel="stylesheet" asp-append-version="true">
+
+		<!-- Bootstrap css -->
+		<link id="style" href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
+
+		<!-- style css -->
+		<link href="~/assets/css/style.css" rel="stylesheet" asp-append-version="true">
+		<link href="~/assets/css/plugins.css" rel="stylesheet" asp-append-version="true">
+
+		@* @RenderSection("Css",false/*required*/) *@
+        @await RenderSectionAsync("Css", required: false)
+
+		<!--- Animations css -->
+		<link href="~/assets/css/animate.css" rel="stylesheet" asp-append-version="true">
+
+    </head>
+    <body class="ltr main-body error-page1 error-3 login-img">
+
+		<!-- Loader -->
+		<div id="global-loader">
+			<img src="~/assets/img/svgicons/loader.svg" class="loader-img" alt="Loader">
+		</div>
+		<!-- /Loader -->
+
+		<!-- Page -->
+		<div class="page overflow-hidden">
+
+			<div class="container-fluid">
+
+                @RenderBody()
+
+			</div>
+
+		</div>
+		<!-- End Page -->
+
+		<!--- JQuery min js -->
+		<script src="~/assets/plugins/jquery/jquery.min.js"></script>
+
+		<!--- Bootstrap Bundle js -->
+		<script src="~/assets/plugins/bootstrap/js/popper.min.js"></script>
+		<script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+		<!--- Moment js -->
+		<script src="~/assets/plugins/moment/moment.js"></script>
+
+		<!-- P-scroll js -->
+		<script src="~/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+
+		<!--- Eva-icons js -->
+		<script src="~/assets/js/eva-icons.min.js"></script>
+
+        @* @RenderSection("Scripts",false/*required*/) *@
+        @await RenderSectionAsync("Scripts", required: false)
+
+		<!--- Custom js -->
+		<script src="~/assets/js/custom.js"></script>
+
+		<!--themecolor js-->
+		<script src="~/assets/js/themecolor.js"></script>
+
+		<!-- switcher-styles js -->
+		<script src="~/assets/js/swither-styles.js"></script>
+
+    </body>
+</html>

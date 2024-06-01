@@ -1,0 +1,246 @@
+﻿@{
+    ViewData["Title"] = "MemberCreation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="col-lg-12 col-md-12 mt-4">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Member Creation</h3>
+        </div>
+        <div class="card-body">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <label for="txt_membername" class="form-label">Name <span class="text-danger">*</span></label>
+                    <form> <input type="text" autocomplete="off" data-Mandatory="Y" name="NAME" class="form-control form-control-lg clsClear" id="txt_membername" data-name="MemberName" required /></form>
+                </div>
+                <div class="col-md-2">
+                    <label for="selt_gender" class="form-label">Gender <span class="text-danger">*</span></label>
+                    <form>
+                        <select data-Mandatory="Y" class="form-control form-control-lg  select2-no-search clsClear" autocomplete="off" name="Gender" id="selt_gender" data-name="Gender" required>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Transgender">Transgender</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="col-md-2">
+                    <label for="selt_memberType" class="form-label">Type <span class="text-danger">*</span></label>
+                    <form>
+                        <select name="Type" data-Mandatory="Y" autocomplete="off" class="form-control form-control-lg select2-no-search clsClear" id="selt_memberType" data-name="Type" required>
+                            <option value="New">New</option>
+                            <option value="Renewal">Renewal</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <form>
+                        <label for="txt_memberimage" class="form-label">Image</label>
+                        <input type="file" data-Mandatory="N" name="Image" autocomplete="off" class="form-control form-control-lg clsClear" id="txt_memberimage" data-name="Image" onchange="ChangeImage(this)" />
+                    </form>
+                </div>
+                <div class="col-md-3">
+                    <label for="txt_Dateofbirth" class="form-label">Date Of Birth</label>
+                    <form>
+                        <input type="date" data-Mandatory="N" autocomplete="off" name="Birth" class="form-control form-control-lg  clsClear" id="txt_Dateofbirth" data-name="Birth">
+                    </form>
+                </div>
+
+                <div class="col-md-3">
+                    <label for="txt_Joiningdate" class="form-label">Joining Date <span class="text-danger">*</span></label>
+                    <form>
+                        <input type="date" data-Mandatory="Y" autocomplete="off" name="Joining" class="form-control form-control-lg clsdate clsClear" id="txt_Joiningdate" data-name="Joining" required>
+                    </form>
+                </div>
+
+                <div class="col-md-6">
+                    <label for="selt_Package" class="form-label">Package <span class="text-danger">*</span></label>
+                    <form>
+                        <select autocomplete="off" data-Mandatory="Y" class="form-control form-control-lg select2-no-search clsClear" name="Package" id="selt_Package" data-name="Package" required>
+                            <option value="">-Select Package-</option>
+                            <option value="General fitness-1 monthly">General fitness-1 monthly</option>
+                            <option value="General fitness-2 monthly">General fitness-2 monthly</option>
+                            <option value="General fitness-3 monthly">General fitness-3 monthly</option>
+                            <option value="General fitness-monthly special">General fitness-monthly special</option>
+                            <option value="General fitness-quarterly">General fitness-quarterly</option>
+                            <option value="General fitness-half-yearly">General fitness-half-yearly</option>
+                            <option value="General fitness-yearly upgrade">General fitness-yearly upgrade</option>
+                            <option value="General fitness-friend package">General fitness-friend package</option>
+                            <option value="General fitness-annual-6000">General fitness-annual-6000</option>
+                            <option value="Couple package annual">Couple package annual</option>
+                            <option value="General fitness monthly">General fitness monthly</option>
+                        </select>
+                    </form>
+                </div>
+                <div class="col-md-2">
+
+                    <label for="txt_payment" class="form-label">Payment <span class="text-danger">*</span></label>
+                    <form>
+                        <input type="text" data-Mandatory="Y" autocomplete="off" name="Payment" class="form-control form-control-lg clsClear" id="txt_payment" data-name="Payment" required>
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <label for="txt_Startdate" class="form-label">Start Date <span class="text-danger">*</span></label>
+                    <form>
+                        <input type="date" data-Mandatory="Y" autocomplete="off" name="Start" class="form-control form-control-lg clsdate clsClear" id="txt_Startdate" data-name="Start" required onchange="StartDate()">
+                    </form>
+                </div>
+                <div class="col-md-2">
+                    <label for="txt_Days" class="form-label">Days <span class="text-danger">*</span></label>
+                    <form>
+                        <input type="text" data-Mandatory="Y" autocomplete="off" name="Days" class="form-control form-control-lg clsClear" id="txt_Days" data-name="Days" required onkeyup="ChangeDays()">
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txt_Enddate" class="form-label">End Date <span class="text-danger">*</span></label>
+                    <form>
+                        <input type="date" data-Mandatory="Y" autocomplete="off" name="End" disabled class="form-control form-control-lg clsdate clsClear" id="txt_Enddate" data-name="End" required>
+                    </form>
+                </div>
+
+                <div class="col-md-4">
+                    <label for="txt_email" class="form-label">Email</label>
+                    <form>
+                        <input type="email" data-Mandatory="N" autocomplete="off" name="Email" class="form-control form-control-lg clsClear" id="txt_email" data-name="Email" />
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <label for="txt_MobileNumber" class="form-label">Mobile Number <span class="text-danger">*</span></label>
+                    <form>
+                        <input type="text" data-Mandatory="Y" autocomplete="off" name="Mobile" class="form-control form-control-lg clsClear" id="txt_MobileNumber" data-name="Mobile" required />
+                    </form>
+                </div>
+                <div class="col-md-4">
+                    <label for="txt_Address" class="form-label">Address</label>
+                    <form>
+                        <input type="text" data-Mandatory="N" autocomplete="off" name="Address" class="form-control form-control-lg clsClear" id="txt_Address" data-name="Address" />
+                    </form>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary" type="submit" onclick="submit()">Submit</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="~/js/jquery.min.js"></script>
+<script>
+
+    function Clear() {
+
+        $(".clsClear").val("");
+        $(".clsdate").val(CurrentDateFormat);
+        $("#selt_memberType").val("New");
+        $("#selt_gender").val("Male");
+    }
+    var base64String = "";
+    function ChangeImage(arg) {
+        const file = $(arg)[0].files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = function () {
+                base64String = reader.result.split(',')[1];
+                console.log(base64String);
+            };
+            reader.onerror = function (error) {
+                console.error('Error:', error);
+            };
+        }
+    }
+
+    var CurrentDateFormat = "";
+    $(document).ready(function () {
+        var currentDate = new Date();
+        var day = currentDate.getDate();
+        var month = currentDate.getMonth() + 1;
+        var year = currentDate.getFullYear();
+        day = day < 10 ? '0' + day : day;
+        month = month < 10 ? '0' + month : month;
+
+        CurrentDateFormat = year + '-' + month + '-' + day;
+
+        $(".clsdate").val(CurrentDateFormat);
+    });
+
+    function ChangeDays() {
+        var StartDate = $("#txt_Startdate").val();
+        if (StartDate == "") {
+            swal('', 'Enter the startdate', 'error');
+            return false;
+        }
+        var Days = parseInt($("#txt_Days").val(), 10);
+        var startDateObj = new Date(StartDate);
+        if (isNaN(startDateObj.getTime())) {
+            alert("Invalid start date format. Please use a valid date.");
+            return;
+        }
+        startDateObj.setDate(startDateObj.getDate() + Days);
+        var year = startDateObj.getFullYear();
+        var month = (startDateObj.getMonth() + 1).toString().padStart(2, '0');
+        var day = startDateObj.getDate().toString().padStart(2, '0');
+        var endDateStr = year + '-' + month + '-' + day;
+        $("#txt_Enddate").val(endDateStr);
+    }
+
+    function StartDate() {
+        $("#txt_Enddate").val(CurrentDateFormat);
+        $("#txt_Days").val("");
+    }
+
+    function submit() {
+        var ReqData = {};
+        var ReqFlag = true;
+        $(".form-control").each(function () {
+            var key = $(this).prop("name");
+            var Mandatory = $(this).attr("data-Mandatory");
+            var value = $(this).val();
+            if (Mandatory == "Y" && value == "") {
+                $(this).focus();
+                swal('', 'Enter the value in all mandatory fields.', 'info');
+                ReqFlag = false;
+                return false;
+            }
+            if (key == "Image") {
+                value = base64String;
+            }
+            ReqData[key] = value;
+        });
+        ReqData["FLAG"] = "I";
+        var Param = JSON.stringify(ReqData);
+        if (ReqFlag) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("SubmitCreation", "Admin")',
+                data: Param,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                beforeSend: function () { $("#global-loader").show(); },
+                complete: function () { $("#global-loader").hide(); },
+                success: function (data) {
+                    console.log(data.error);
+                    if (data.status == "01") {
+                        Clear();
+                        swal('', 'Member created successfully.', 'success');
+                        return false;
+                    }
+                    else {
+                        swal('', 'Unable to create a member.Try again!', 'error');
+                        return false;
+                    }
+                },
+                error: function (jqXhr, textStatus, errorMessage) {
+                    swal('', 'Unable to create a member.Try again!', 'error');
+                    console.log(errorMessage);
+                    return false;
+
+                }
+            });
+        }
+    }
+
+
+
+
+</script>

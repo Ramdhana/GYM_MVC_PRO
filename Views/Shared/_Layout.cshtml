@@ -1,0 +1,138 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0, user-scalable=0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Title -->
+    <title>Flexfit Shape Your Future</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="~/assets/img/brand/favicon.png" type="image/x-icon">
+
+    <!-- Icons css -->
+    <link href="~/assets/css/icons.css" rel="stylesheet" asp-append-version="true">
+
+    <!-- Bootstrap css -->
+    <link id="style" href="~/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true">
+
+    <!-- style css -->
+    <link href="~/assets/css/style.css" rel="stylesheet" asp-append-version="true">
+    <link href="~/assets/css/plugins.css" rel="stylesheet" asp-append-version="true">
+
+    <!--- Animations css-->
+    <link href="~/assets/css/animate.css" rel="stylesheet" asp-append-version="true">
+
+    @* @RenderSection("Css",false/*required*/) *@
+    @await RenderSectionAsync("Css", required: false)
+</head>
+<body class="ltr main-body app sidebar-mini">
+
+    <!-- Loader -->
+    <div id="global-loader">
+        <img src="~/assets/img/svgicons/loader.svg" class="loader-img" alt="Loader">
+    </div>
+    <!-- /Loader -->
+    <!-- Page -->
+    <div class="page">
+
+        <div>
+            <!-- app header code -->
+            <partial name="~/Views/Shared/layouts/_app-header.cshtml" />
+            <!-- End app header Code -->
+            <!-- app sidebar Code -->
+            <partial name="~/Views/Shared/layouts/_app-sidebar.cshtml" />
+            <!-- End app sidebar Code -->
+        </div>
+
+        <!-- main-content -->
+        <div class="main-content app-content">
+
+            <!-- container -->
+            <div class="main-container container-fluid">
+
+                @RenderBody()
+
+            </div>
+            <!-- Container closed -->
+        </div>
+        <!-- main-content closed -->
+        <!-- Message Modal -->
+        <partial name="~/Views/Shared/layouts/_modal.cshtml" />
+        <!--  End Message Modal -->
+        <!-- Footer opened -->
+        <partial name="~/Views/Shared/layouts/_footer.cshtml" />
+        <!--  End Footer closed -->
+
+    </div>
+    <!-- page closed -->
+    <!-- Back-to-top -->
+    <a href="#top" id="back-to-top"><i class="las la-angle-double-up"></i></a>
+
+    <!-- JQuery min js -->
+    <script src="~/js/jquery.min.js"></script>
+
+    <!-- Bootstrap Bundle js -->
+    <script src="~/assets/plugins/bootstrap/js/popper.min.js"></script>
+    <script src="~/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- Moment js -->
+    <script src="~/assets/plugins/moment/moment.js"></script>
+
+    <!-- P-scroll js -->
+    <script src="~/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+
+    <!-- Sticky js -->
+    <script src="~/assets/js/sticky.js"></script>
+
+    <!-- eva-icons js -->
+    <script src="~/assets/js/eva-icons.min.js"></script>
+
+    <!-- Right-sidebar js -->
+    <script src="~/assets/plugins/sidebar/sidebar.js"></script>
+    <script src="~/assets/plugins/sidebar/sidebar-custom.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="~/assets/plugins/side-menu/sidemenu.js"></script>
+
+    @* @RenderSection("Scripts",false/*required*/) *@
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <!-- custom js -->
+    <script src="~/assets/js/custom.js"></script>
+
+    <!--themecolor js-->
+    <script src="~/assets/js/themecolor.js"></script>
+
+    <!-- switcher-styles js -->
+    <script src="~/assets/js/swither-styles.js"></script>
+
+    <script src="~/js/jquery.ajaxy.min.js"></script>
+
+    <script src="~/assets/plugins/sweet-alert/sweetalert.min.js"></script>
+
+
+	<!-- Internal Select2.min js -->
+	<script src="~/assets/plugins/select2/js/select2.min.js"></script>
+
+    <!-- DATA TABLE JS-->
+	<script src="~/assets/plugins/datatable/js/jquery.dataTables.min.js"></script>
+	<script src="~/assets/plugins/datatable/js/dataTables.bootstrap5.js"></script>
+	<script src="~/assets/plugins/datatable/js/dataTables.buttons.min.js"></script>
+	<script src="~/assets/plugins/datatable/js/buttons.bootstrap5.min.js"></script>
+	<script src="~/assets/plugins/datatable/js/jszip.min.js"></script>
+	<script src="~/assets/plugins/datatable/pdfmake/pdfmake.min.js"></script>
+	<script src="~/assets/plugins/datatable/pdfmake/vfs_fonts.js"></script>
+	<script src="~/assets/plugins/datatable/js/buttons.html5.min.js"></script>
+	<script src="~/assets/plugins/datatable/js/buttons.print.min.js"></script>
+	<script src="~/assets/plugins/datatable/js/buttons.colVis.min.js"></script>
+	<script src="~/assets/plugins/datatable/dataTables.responsive.min.js"></script>
+	<script src="~/assets/plugins/datatable/responsive.bootstrap5.min.js"></script>
+
+	<!--Internal  Datatable js -->
+	<script src="~/assets/js/table-data.js"></script>
+
+
+</body>
+</html>
